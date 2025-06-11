@@ -1,7 +1,6 @@
-import React from "react"
 import { useForm } from "react-hook-form"
 import Error from "./Error";
-import type { DraftPatient } from './types/index';
+import type { DraftPatient } from "../types";
 
 
 export default function PatientForm() {
