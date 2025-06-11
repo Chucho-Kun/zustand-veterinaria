@@ -1,2 +1,2 @@
-# React + TypeScript + Vite
+# React + Typescript + React Hook Form + Zustand + TailwindCSS
 
