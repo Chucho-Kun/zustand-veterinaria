@@ -7,9 +7,10 @@ export default function PatientForm() {
 
     //const { addPatient } = usePatientStore() solo es cambio de sintaxis
     const addPatient = usePatientStore( (state) => state.addPatient )
-    const { register ,  handleSubmit , formState:{ errors } } = useForm<DraftPatient>()
+    const { register ,  handleSubmit , formState:{ errors } , reset } = useForm<DraftPatient>()
     const registerPatient = ( data : DraftPatient ) => {
         addPatient( data )
+        reset()
     }
 
   return (
@@ -77,7 +78,11 @@ export default function PatientForm() {
                   type="email" 
                   placeholder="Email de Registro" 
                   { ...register ( 'email' , {
-                        required: 'El email es obligatorio'
+                    required: 'El email es obligatorio',
+                    pattern:{
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Email no válido'
+                    }
                     } ) }
                 />
                 { errors.email && (
