@@ -1,17 +1,14 @@
 import React from "react"
 import { useForm } from "react-hook-form"
-import Error from "./Error";
-
 
 export default function PatientForm() {
   
-    const { register ,  handleSubmit , formState:{ errors } } = useForm()
+    const { register ,  handleSubmit } = useForm()
     const registerPatient = () => {
         console.log('un nuevo paciente')
     }
 
   return (
-    
     <div className="md:w-1/2 lg:w-2/5 mx-5">
         <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
 
@@ -35,16 +32,9 @@ export default function PatientForm() {
                       type="text" 
                       placeholder="Nombre del Paciente" 
                       { ...register ( 'name' , {
-                        required: 'El nombre del paciente es obligatorio',
-                        maxLength: {
-                            value:8,
-                            message: 'Máximo 8 caracteres'
-                        }
+                        required: 'El nombre del paciente es obligatorio'
                       }) }
                   />
-                  { errors.name && (
-                      <Error>{ errors.name?.message?.toString() }</Error>
-                  ) }
               </div>
 
               <div className="mb-5">
@@ -56,9 +46,6 @@ export default function PatientForm() {
                     className="w-full p-3  border border-gray-100"  
                     type="text" 
                     placeholder="Nombre del Propietario" 
-                    { ...register ( 'caretaker' , {
-                        required: 'El propietario es obligatorio'
-                    } ) }
                 />
               </div>
 
