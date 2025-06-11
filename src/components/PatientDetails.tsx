@@ -1,5 +1,5 @@
 import { use } from "react"
-import { usePatientStore } from "../store"
+import { usePatientStore } from '../store';
 import type { Patient } from "../types"
 import PatienDetailItem from "./PatienDetailItem"
 
@@ -10,6 +10,7 @@ type PatientDetailsProps = {
 export default function PatientDetails({ patient } : PatientDetailsProps) {
 
   const deletPatient =  usePatientStore( state => state.deletePatient )
+  const getPatientByID = usePatientStore( state => state.getPatientByID )
 
   return (
     <div className="mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
@@ -20,10 +21,11 @@ export default function PatientDetails({ patient } : PatientDetailsProps) {
         <PatienDetailItem label="Fecha ingreso" data={ patient.date.toString() } />
         <PatienDetailItem label="Sintomas" data={ patient.symptoms } />
 
-        <div className="flex justify-between mt-10">
+        <div className="flex flex-col lg:flex-row gap-3 justify-between mt-10">
             <button
                 type="button"
-                className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"    
+                className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
+                onClick={() => getPatientByID( patient.id )}
             >Editar</button>
             <button
                 type="button"
