@@ -1,5 +1,4 @@
-import { use } from "react"
-import { toast } from "react-toastify";
+ import { toast } from "react-toastify";
 import { usePatientStore } from '../store';
 import type { Patient } from "../types"
 import PatienDetailItem from "./PatienDetailItem"

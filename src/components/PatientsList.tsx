@@ -13,6 +13,7 @@ export default function PatientsList() {
             <p className="text-xl mt-5 mb-5 text-center">Administra tus {''}
               <span className="text-indigo-600 font-bold">Pacientes y citas</span>
             </p>
+
             { patients.map( patient => (
               <PatientDetails 
                 key={patient.id}
@@ -29,6 +30,7 @@ export default function PatientsList() {
             </p>
           </>
         )}
+        
     </div>
   )
 }
