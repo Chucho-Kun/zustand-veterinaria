@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify";
 import Error from "./Error";
 import type { DraftPatient } from "../types";
 import { usePatientStore } from '../store';
@@ -10,18 +11,33 @@ export default function PatientForm() {
     const addPatient = usePatientStore( state => state.addPatient )
     const activeId = usePatientStore( state => state.activeID )
     const patients = usePatientStore( state => state.patients )
+    const updatePatient = usePatientStore( state => state.updatePatient )
 
-    const { register ,  handleSubmit , formState:{ errors } , reset } = useForm<DraftPatient>()
+    const { register ,  handleSubmit , setValue , formState:{ errors } , reset } = useForm<DraftPatient>()
 
     useEffect( () => {
         if(activeId){
             const activePatient = patients.filter( patient => patient.id === activeId )[0]
-            console.log( activePatient )
+            setValue( 'name' , activePatient.name )
+            setValue( 'caretaker' , activePatient.caretaker )
+            setValue( 'date' , activePatient.date )
+            setValue( 'email' , activePatient.email )
+            setValue( 'symptoms' , activePatient.symptoms )
+
         }
     },[activeId])
     
     const registerPatient = ( data : DraftPatient ) => {
-        addPatient( data )
+        if( activeId ){
+            updatePatient( data )
+            toast('Paciente Actualizado Correctamente' , {
+                type: "default"
+            })
+        } else {
+            addPatient( data )
+            toast.success( 'Paciente Registrado Correctamente' )
+        }
+        
         reset()
     }
 
