@@ -12,9 +12,12 @@ npm i react-hook-form
 ```
 npm i zustand
 ```
-### uuid
+### Uuid
 ```
 npm i uuid
 npm i --save-dev @types/uuid
 ```
-
+### Toastify
+```
+npm i react-toastify
+```
